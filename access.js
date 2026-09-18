@@ -72,8 +72,11 @@
       }
     }, {rootMargin:'400px'}) : null;
     function queue(node, load) {
-      node._privateLoad = load;
-      if (observer) observer.observe(node); else load();
+      // An unloaded portrait is only as tall as its alt text. Its crop can
+      // therefore sit outside the clipped card and never intersect the viewport.
+      const target = node.tagName === 'IMG' ? node.closest('.portrait') || node : node;
+      target._privateLoad = load;
+      if (observer) observer.observe(target); else load();
     }
     function loadResource(node) {
       const raw = node.getAttribute('src') || node.dataset.privateSrc;
