@@ -34,7 +34,7 @@
    // Open the verified self-contained game in this document. Large blob iframe
    // navigation can stall in embedded browsers; no second navigation is needed.
    const markup=await html.text();
-   const exit='<button id="protectedArenaExit" type="button" style="position:fixed;right:12px;bottom:12px;z-index:500;background:#071612d9;color:#efdfbc;border:1px solid #c9aa76;padding:8px 13px;font:12px Segoe UI;cursor:pointer">Arena schließen</button>';
+   const exit='<button id="protectedArenaExit" type="button" style="position:fixed;left:12px;bottom:12px;z-index:500;background:#071612d9;color:#efdfbc;border:1px solid #c9aa76;padding:8px 13px;font:12px Segoe UI;cursor:pointer">Arena schließen</button>';
    document.open();document.write(markup.replace('</body>',exit+'</body>'));document.close();
    document.getElementById('protectedArenaExit').onclick=()=>location.reload();
   }catch(error){$('password').value='';$('status').textContent=error.name==='AbortError'?'Laden abgebrochen.':error.message||'Die Arena konnte nicht geöffnet werden.';reset();$('password').focus();}
